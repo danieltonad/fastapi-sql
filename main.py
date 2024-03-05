@@ -35,6 +35,6 @@ async def root():
 
 @app.post("/users/", status_code=status.HTTP_201_CREATED)
 async def create_user_route(user: UserBase, db: db_dependency):
-    db_user = model.User(**user)
+    db_user = model.User(**user.dict())
     db.add(db_user)
     db.commit()
